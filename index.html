@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YBANK — Digital Asset on TON</title>
+    <meta name="description" content="YBANK is a digital asset on TON. Fixed supply. No mint. No freeze. Part of BYT Assist ecosystem.">
+    <meta name="keywords" content="YBANK, TON, DeFi, digital asset">
+    <link rel="canonical" href="https://byt-assist.github.io/ybank/">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXP2EW5J6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QRXP2EW5J6');
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a2a 0%, #000000 100%);
+            color: #fff;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        /* Language Switcher */
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: flex-end;
+            z-index: 100;
+            max-width: 80%;
+        }
+        .lang-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #00f3ff;
+            color: #00f3ff;
+            padding: 3px 8px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.65rem;
+            transition: all 0.3s;
+        }
+        .lang-btn.active, .lang-btn:hover { background: #00f3ff; color: #000; }
+        
+        /* Header */
+        .header { text-align: center; padding: 100px 20px 40px; }
+        .logo a { display: inline-block; transition: all 0.3s ease; }
+        .logo a:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+            filter: drop-shadow(0 0 15px #00f3ff);
+        }
+        .logo img { max-width: 280px; width: 100%; height: auto; margin-bottom: 20px; }
+        .tagline { font-size: 1.2rem; color: #ccc; margin-bottom: 20px; }
+        .contract { background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 40px; display: inline-block; font-family: monospace; font-size: 0.9rem; word-break: break-all; }
+        
+        /* Buttons */
+        .btn-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin: 30px 0; }
+        .btn { padding: 12px 24px; border-radius: 40px; text-decoration: none; font-weight: bold; transition: all 0.3s; }
+        .btn-primary { background: #00f3ff; color: #000; }
+        .btn-primary:hover { background: #0066cc; color: #fff; transform: translateY(-2px); }
+        .btn-secondary { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #00f3ff; }
+        .btn-secondary:hover { background: rgba(0,243,255,0.2); transform: translateY(-2px); }
+        
+        /* Sections */
+        .section { margin: 60px 0; }
+        .section-title { text-align: center; font-size: 2rem; margin-bottom: 40px; color: #00f3ff; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 30px; backdrop-filter: blur(10px); border: 1px solid rgba(0,243,255,0.3); transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: #00f3ff; }
+        .card-icon { font-size: 2.5rem; margin-bottom: 20px; }
+        .card h3 { margin-bottom: 15px; color: #00f3ff; }
+        .card p { color: #ccc; margin-bottom: 20px; }
+        .card-link { color: #00f3ff; text-decoration: none; font-weight: bold; }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #888;
+        }
+        .footer a { color: #00f3ff; text-decoration: none; margin: 0 5px; }
+        .footer p { margin-bottom: 10px; }
+        
+        @media (max-width: 768px) {
+            .lang-switch { position: static; justify-content: center; margin-bottom: 20px; }
+            .header { padding-top: 20px; }
+            .btn-group { flex-direction: column; align-items: center; }
+            .btn { width: 80%; text-align: center; }
+            .logo img { max-width: 200px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="lang-switch" id="langSwitcher">
+        <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+        <button class="lang-btn" data-lang="ru">🇷🇺 RU</button>
+        <button class="lang-btn" data-lang="ar">🇦🇪 AR</button>
+        <button class="lang-btn" data-lang="zh">🇨🇳 中文</button>
+        <button class="lang-btn" data-lang="tr">🇹🇷 TR</button>
+        <button class="lang-btn" data-lang="hi">🇮🇳 HI</button>
+        <button class="lang-btn" data-lang="es">🇪🇸 ES</button>
+        <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
+        <button class="lang-btn" data-lang="de">🇩🇪 DE</button>
+        <button class="lang-btn" data-lang="id">🇮🇩 ID</button>
+        <button class="lang-btn" data-lang="uz">🇺🇿 UZ</button>
+        <button class="lang-btn" data-lang="kg">🇰🇬 KG</button>
+        <button class="lang-btn" data-lang="kz">🇰🇿 KZ</button>
+        <button class="lang-btn" data-lang="tj">🇹🇯 TJ</button>
+        <button class="lang-btn" data-lang="tm">🇹🇲 TM</button>
+        <button class="lang-btn" data-lang="az">🇦🇿 AZ</button>
+        <button class="lang-btn" data-lang="ge">🇬🇪 GE</button>
+        <button class="lang-btn" data-lang="am">🇦🇲 AM</button>
+        <button class="lang-btn" data-lang="he">🇮🇱 HE</button>
+        <button class="lang-btn" data-lang="fa">🇮🇷 FA</button>
+        <button class="lang-btn" data-lang="ko">🇰🇷 KO</button>
+        <button class="lang-btn" data-lang="lv">🇱🇻 LV</button>
+        <button class="lang-btn" data-lang="ja">🇯🇵 JA</button>
+        <button class="lang-btn" data-lang="br">🇧🇷 PT</button>
+        <button class="lang-btn" data-lang="ve">🇻🇪 ES</button>
+    </div>
+
+    <div class="header">
+        <div class="logo">
+            <a href="https://byt-assist.github.io/ybank/">
+                <img src="ybank_logo.png" alt="YBANK">
+            </a>
+        </div>
+        <div class="tagline" id="tagline">Digital Asset on TON</div>
+        <div class="contract" id="contract">📄 Contract: [адрес после деплоя]</div>
+        <div class="btn-group">
+            <a href="https://t.me/BOYMAT_token_BYT" class="btn btn-primary" target="_blank" id="btnBot">🤖 Telegram Bot</a>
+            <a href="https://app.ston.fi/swap" class="btn btn-secondary" target="_blank" id="btnBuy">💰 Buy YBANK</a>
+            <a href="https://t.me/BOYMAT_token_BYT" class="btn btn-secondary" target="_blank" id="btnSupport">💬 Support</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title" id="title1">⚡ About YBANK</div>
+        <div class="cards">
+            <div class="card"><div class="card-icon">🔄</div><h3 id="card1Title">Fixed Supply</h3><p id="card1Desc">Total supply: 1,000,000,000 YBANK. No mint. No freeze.</p></div>
+            <div class="card"><div class="card-icon">🔒</div><h3 id="card2Title">Ownership Revoked</h3><p id="card2Desc">Admin rights are revoked. No one can mint new tokens or change metadata.</p></div>
+            <div class="card"><div class="card-icon">🏦</div><h3 id="card3Title">Part of BYT Assist</h3><p id="card3Desc">YBANK is part of the BYT Assist ecosystem.</p></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title" id="title2">💰 Tokenomics</div>
+        <div class="cards">
+            <div class="card"><div class="card-icon">🔄</div><h3>Total Supply</h3><p>1,000,000,000 YBANK</p></div>
+            <div class="card"><div class="card-icon">🔒</div><h3>Ownership Revoked</h3><p>No mint. No freeze.</p></div>
+            <div class="card"><div class="card-icon">🏦</div><h3>Network</h3><p>TON</p></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2026 YBANK — Part of BYT Assist ecosystem</p>
+        <p>
+            <a href="https://byt-assist.github.io/ybank/">Home</a> |
+            <a href="about.html">About</a> |
+            <a href="faq.html">FAQ</a> |
+            <a href="whitepaper.html">Whitepaper</a> |
+            <a href="tokenomics.html">Tokenomics</a> |
+            <a href="roadmap.html">Roadmap</a> |
+            <a href="security.html">Security</a> |
+            <a href="kyc.html">KYC</a>
+        </p>
+        <p>
+            <a href="https://t.me/BOYMAT_token_BYT" target="_blank">Telegram</a> |
+            <a href="https://tonviewer.com/[адрес]" target="_blank">Tonviewer</a>
+        </p>
+        <p style="font-size:0.8rem">Network: TON | Contract: [адрес после деплоя]</p>
+    </div>
+</div>
+
+<script>
+    const translations = {
+        en: {
+            tagline: "Digital Asset on TON",
+            btnBot: "🤖 Telegram Bot",
+            btnBuy: "💰 Buy YBANK",
+            btnSupport: "💬 Support",
+            title1: "⚡ About YBANK",
+            card1Title: "Fixed Supply",
+            card1Desc: "Total supply: 1,000,000,000 YBANK. No mint. No freeze.",
+            card2Title: "Ownership Revoked",
+            card2Desc: "Admin rights are revoked. No one can mint new tokens or change metadata.",
+            card3Title: "Part of BYT Assist",
+            card3Desc: "YBANK is part of the BYT Assist ecosystem.",
+            title2: "💰 Tokenomics"
+        },
+        ru: {
+            tagline: "Цифровой актив на TON",
+            btnBot: "🤖 Telegram Бот",
+            btnBuy: "💰 Купить YBANK",
+            btnSupport: "💬 Поддержка",
+            title1: "⚡ О YBANK",
+            card1Title: "Фиксированная эмиссия",
+            card1Desc: "Общая эмиссия: 1,000,000,000 YBANK. Никакой допэмиссии или заморозки.",
+            card2Title: "Права отозваны",
+            card2Desc: "Права администратора отозваны. Никто не может выпускать новые токены или менять метаданные.",
+            card3Title: "Часть BYT Assist",
+            card3Desc: "YBANK является частью экосистемы BYT Assist.",
+            title2: "💰 Токеномика"
+        }
+    };
+    const defaultLang = "en";
+    function setLanguage(lang) {
+        const t = translations[lang] || translations[defaultLang];
+        document.getElementById('tagline').innerText = t.tagline;
+        document.getElementById('btnBot').innerText = t.btnBot;
+        document.getElementById('btnBuy').innerText = t.btnBuy;
+        document.getElementById('btnSupport').innerText = t.btnSupport;
+        document.getElementById('title1').innerText = t.title1;
+        document.getElementById('card1Title').innerText = t.card1Title;
+        document.getElementById('card1Desc').innerText = t.card1Desc;
+        document.getElementById('card2Title').innerText = t.card2Title;
+        document.getElementById('card2Desc').innerText = t.card2Desc;
+        document.getElementById('card3Title').innerText = t.card3Title;
+        document.getElementById('card3Desc').innerText = t.card3Desc;
+        document.getElementById('title2').innerText = t.title2;
+        localStorage.setItem('ybank_lang', lang);
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        if(document.querySelector(`.lang-btn[data-lang="${lang}"]`)) document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
+    }
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.lang)));
+    const savedLang = localStorage.getItem('ybank_lang');
+    if(savedLang && translations[savedLang]) setLanguage(savedLang);
+    else setLanguage('en');
+</script>
+</body>
+</html>
